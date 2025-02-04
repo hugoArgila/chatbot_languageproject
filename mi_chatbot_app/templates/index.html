@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot Web</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        /* Contenedor principal del chat */
+        .chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Burbuja de chat */
+        .chat-bubble {
+            max-width: 70%;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            line-height: 1.4;
+        }
+        /* Mensaje del usuario */
+        .user {
+            background-color: #0084ff;
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+        /* Mensaje del bot */
+        .bot {
+            background-color: #e5e5ea;
+            color: #000;
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+        /* Contenedor del formulario de entrada */
+        .input-container {
+            display: flex;
+            background-color: #fff;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .input-container input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+        }
+        .input-container button {
+            padding: 0 20px;
+            margin-left: 10px;
+            background-color: #0084ff;
+            border: none;
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .input-container button:hover {
+            background-color: #006bbd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor del chat -->
+    <div class="chat-container" id="chat-container">
+        {% if question %}
+            <div class="chat-bubble user">
+                {{ question }}
+            </div>
+        {% endif %}
+        
+        {% if answers %}
+            {% for answer in answers %}
+                <div class="chat-bubble bot">
+                    <p><strong>Respuesta:</strong> {{ answer.answer }}</p>
+                    <p><small>Confianza: {{ answer.confidence }}</small></p>
+                    <p><small>Fuente: {{ answer.source }}</small></p>
+                </div>
+            {% endfor %}
+        {% elif error %}
+            <div class="chat-bubble bot">
+                <p style="color: red;"><strong>Error:</strong> {{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+    
+    <!-- Formulario para enviar mensajes -->
+    <form action="/preguntar" method="post" class="input-container">
+        <input type="text" id="question" name="question" placeholder="Escribe tu mensaje..." required>
+        <button type="submit">Enviar</button>
+    </form>
+    
+    <script>
+        // Auto-scroll al final del contenedor de chat
+        var chatContainer = document.getElementById("chat-container");
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    </script>
+</body>
+</html>
