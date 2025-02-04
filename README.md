@@ -15,4 +15,6 @@ Next, you will have to run your python code in your terminal using the command:
 ```bash
 python qna-app.py
 ```
- 
+
+ ### Step 3: Enter your App 
+ Finally, you will have to enter inside a web browser to your app using this link: **http://127.0.0.1:5000/**
