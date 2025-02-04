@@ -10,11 +10,14 @@
 ### Step 1: Dependencies installation
 First, make sure you have installed the libraries in the [requirements.txt](https://github.com/hugoArgila/chatbot_languageproject/blob/main/mi_chatbot_app/requirements.txt) archive. If not install them in your terminal using the pip command.
 
-### Step 2: Run Python Code
+### Step 3: Configure your .env
+You will need to configure a .env with the enviroment variables to connect to our Azure API.
+
+### Step 3: Run Python Code
 Next, you will have to run your python code in your terminal using the command:
 ```bash
 python qna-app.py
 ```
 
- ### Step 3: Enter your App 
+ ### Step 4: Enter your App 
  Finally, you will have to enter inside a web browser to your app using this link: **http://127.0.0.1:5000/**
