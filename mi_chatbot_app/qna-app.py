@@ -2,18 +2,18 @@ from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
 import os
 
-# Importar el cliente de Azure
+# Import Azure Client
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.language.questionanswering import QuestionAnsweringClient
 
-# Cargar variables de entorno
+# Load environment variables
 load_dotenv()
 ai_endpoint = os.getenv('AI_SERVICE_ENDPOINT')
 ai_key = os.getenv('AI_SERVICE_KEY')
 ai_project_name = os.getenv('QA_PROJECT_NAME')
 ai_deployment_name = os.getenv('QA_DEPLOYMENT_NAME')
 
-# Crear el cliente de Azure
+# Create Azure Client
 credential = AzureKeyCredential(ai_key)
 ai_client = QuestionAnsweringClient(endpoint=ai_endpoint, credential=credential)
 
@@ -25,10 +25,10 @@ def index():
 
 @app.route("/preguntar", methods=["POST"])
 def preguntar():
-    # Obtener la pregunta del usuario desde el formulario
+    # Obtain user question from the form
     user_question = request.form.get("question", "")
     
-    # Llamar al servicio de Azure
+    # Call Azure Service
     try:
         response = ai_client.get_answers(
             question=user_question,
@@ -36,7 +36,7 @@ def preguntar():
             deployment_name=ai_deployment_name
         )
         
-        # Recoger la respuesta (puedes personalizar el formato de salida)
+        # Collect the response
         answers = []
         for candidate in response.answers:
             answers.append({
@@ -48,7 +48,7 @@ def preguntar():
         return render_template("index.html", question=user_question, answers=answers)
     
     except Exception as ex:
-        # En caso de error, mostrar el mensaje
+        # If error, show the message:
         return render_template("index.html", error=str(ex))
 
 if __name__ == "__main__":
