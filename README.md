@@ -12,7 +12,7 @@ First, make sure you have installed the libraries in the [requirements.txt](http
 
 ### Step 2: Run Python Code
 Next, you will have to run your python code in your terminal using the command:
-´´´bash
+```bash
 python qna-app.py
-´´´
+```
  
