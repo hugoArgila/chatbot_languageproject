@@ -1,4 +1,3 @@
-Flask==2.2.2
 python-dotenv==0.21.0
 azure-ai-language-questionanswering==1.0.0
 streamlit==1.2.0
