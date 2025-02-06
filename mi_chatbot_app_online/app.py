@@ -41,7 +41,8 @@ def get_conversation_analysis(query, conv_client, conv_project_name, conv_deploy
             "verbose": True
         }
     }
-    result = conv_client.analyze_conversations(task)
+    # Utiliza el método analyze_conversation (en singular)
+    result = conv_client.analyze_conversation(task)
     return result
 
 def main():
@@ -107,8 +108,7 @@ def main():
             st.markdown("## Resultados Conversation Analysis")
             try:
                 conv_result = get_conversation_analysis(user_input, conv_client, conv_project_name, conv_deployment_name)
-                # La estructura de la respuesta dependerá de cómo hayas configurado el proyecto de Conversation Analysis.
-                # Aquí se muestra una manera genérica de presentar el resultado.
+                # Se muestra la respuesta completa en formato JSON para su revisión.
                 st.markdown("### Resultado Completo:")
                 st.json(conv_result)
             except Exception as e:
