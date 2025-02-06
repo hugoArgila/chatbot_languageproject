@@ -50,6 +50,10 @@ python qna-app.py
 - GetTeam
 
 ### Utterance Examples for testing
+- Tell me about Michael Jordan
+- Who holds the record for most assists in NBA history?
+- How many championships does LeBron James have?
+- Where does the lakers play?
+- Which city is home to the Houston Rockets?
 
-#### - GetAwards
 
