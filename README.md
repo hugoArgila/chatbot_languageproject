@@ -25,3 +25,29 @@ python qna-app.py
 
  ### Step 4: Enter your App 
  Finally, you will have to enter inside a web browser to your app using this link: **http://127.0.0.1:5000/**
+
+ ## Conversation Analysis
+
+ ### Entities
+- Awards
+- Cities
+- GameDates
+- GameScores
+- Players
+- Positions
+- Stadiums
+- Stats
+- Teams
+
+### Intents
+- GetAwards
+- GetCity
+- GetGameDates
+- GetPlayer
+- GetPosition
+- GetStadium
+- GetStats
+- GetTeam
+
+### Utterance Examples for testing
+
