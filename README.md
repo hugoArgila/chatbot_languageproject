@@ -55,6 +55,7 @@ python qna-app.py
 - How many championships does LeBron James have?
 - Where does the lakers play?
 - Which city is home to the Houston Rockets?
-- When did the Chicago Bulls win their first NBA championship? 
+- When did the Chicago Bulls win their first NBA championship?
+- What was the score of Kobe Bryant’s 81-point game?
 
 
