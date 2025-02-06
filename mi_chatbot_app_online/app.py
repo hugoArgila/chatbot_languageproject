@@ -108,9 +108,36 @@ def main():
             st.markdown("## Resultados Conversation Analysis")
             try:
                 conv_result = get_conversation_analysis(user_input, conv_client, conv_project_name, conv_deployment_name)
-                # Se muestra la respuesta completa en formato JSON para su revisión.
-                st.markdown("### Resultado Completo:")
-                st.json(conv_result)
+                
+                # Convertir el resultado a diccionario (si es necesario)
+                if not isinstance(conv_result, dict):
+                    conv_data = conv_result.as_dict()
+                else:
+                    conv_data = conv_result
+
+                # Extraer la sección de predicción
+                prediction = conv_data.get("result", {}).get("prediction", {})
+                
+                # Extraer la intención con mayor confianza y su puntuación
+                top_intent = prediction.get("topIntent", "N/A")
+                intents = prediction.get("intents", [])
+                selected_intent = next((item for item in intents if item.get("category") == top_intent), None)
+                if selected_intent:
+                    confidence = selected_intent.get("confidenceScore", 0) * 100  # Convertir a porcentaje
+                else:
+                    confidence = 0
+
+                # Extraer la primera entidad (si existe)
+                entities = prediction.get("entities", [])
+                if entities:
+                    entity_text = entities[0].get("text", "N/A")
+                else:
+                    entity_text = "No se detectaron entidades"
+
+                # Mostrar la intención y la entidad
+                st.markdown(f"**Intención:** {top_intent}  |  **Confianza:** {confidence:.2f}%")
+                st.markdown(f"**Entidad:** {entity_text}")
+
             except Exception as e:
                 st.error(f"Error en Conversation Analysis: {e}")
 
