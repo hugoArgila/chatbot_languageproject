@@ -49,10 +49,10 @@ def main():
     ai_deployment_name = os.getenv('QA_DEPLOYMENT_NAME')
 
     # Variables para el servicio LUIS
-    luis_endpoint = os.getenv('LUIS_ENDPOINT')
-    luis_key = os.getenv('LUIS_KEY')
-    luis_app_id = os.getenv('LUIS_APP_ID')
-    luis_slot = os.getenv('LUIS_SLOT', 'Production')
+    luis_endpoint = os.getenv('AI_SERVICE_ENDPOINT')
+    luis_key = os.getenv('AI_SERVICE_KEY')
+    luis_app_id = os.getenv('LUIS_PROJECT_NAME')
+    luis_slot = os.getenv('LUIS_DEPLOYMENT_NAME')
 
     # Entrada de la consulta
     user_input = st.text_input("Escribe tu consulta:")
